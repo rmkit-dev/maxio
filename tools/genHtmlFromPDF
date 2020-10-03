@@ -1,0 +1,37 @@
+HEADER=`cat <<END_HEADER
+  <html>
+
+  <style>
+    img {
+      max-width: 400px;
+      display: inline-block;
+    }
+
+    body {
+      width: 840px;
+      margin: auto;
+    }
+  </style>
+END_HEADER
+`
+
+FOOTER=`cat << END_FOOTER
+  </html>
+END_FOOTER
+`
+
+pdf="$1"
+outfile="${pdf/.pdf/.html}"
+outdir=${pdf/.pdf}
+
+mkdir "${outdir}"
+echo ${HEADER} > ${outfile}
+convert ${1} ${1/pdf/png}
+for i in ${1/.pdf/}*png; do 
+  echo "<a href='${i}'><img src='${i}' /></a>" >> ${outfile}
+  cp ${i} ${outdir}
+done
+
+echo ${FOOTER} >> ${outfile}
+
+mv ${outfile} ${outdir}

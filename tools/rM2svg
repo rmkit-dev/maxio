@@ -173,6 +173,9 @@ def rm2svg(input_file, output_name, coloured_annotations=False,
                 opacity = 0.9
             elif pen == 8: # Erase area
                 opacity = 0.
+            elif pen == 13 or pen == 15 or pen == 17 or pen == 18: 
+                width = 16 * width - 27
+                opacity = 0.9
             else: 
                 print('Unknown pen: {}'.format(pen))
                 opacity = 0.
