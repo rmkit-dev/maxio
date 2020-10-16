@@ -18,7 +18,6 @@ import re
 __prog_name__ = "rm2svg"
 __version__ = "0.0.2.1"
 
-
 # Size
 default_x_width = 1404
 default_y_width = 1872
